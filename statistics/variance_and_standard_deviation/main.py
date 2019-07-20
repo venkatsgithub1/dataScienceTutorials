@@ -37,12 +37,19 @@ percentiles = [2.5, 25, 50, 75, 97.5]
 percentiles_vers = np.percentile(versicolor_petal_length, percentiles)
 print(percentiles_vers)
 
-x_vers, y_vers = ecdf(versicolor_petal_length)
-plt.plot(x_vers, y_vers, '.')
-plt.xlabel('petal length (cm)')
-plt.ylabel('ECDF')
+differences = versicolor_petal_length - np.mean(versicolor_petal_length) # (x-xbar)
 
-plt.plot(percentiles_vers, np.array(percentiles)/100,
-         marker='D', color='red', linestyle='none')
+differences_squared = differences ** 2 # (x-xbar)^2
 
-plt.show()
+variance_explicit = np.mean(differences_squared) # sigma((x-xbar)^2)/n
+
+variance_np = np.var(versicolor_petal_length)
+
+print("explicit", variance_explicit)
+print("np", variance_np)
+
+print("std")
+
+print("explicit", np.sqrt(variance_explicit))
+
+print("np", np.std(versicolor_petal_length))

@@ -2,6 +2,10 @@ from sklearn.datasets import load_iris
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+sns.set()
 
 
 def ecdf(data):
@@ -37,12 +41,9 @@ percentiles = [2.5, 25, 50, 75, 97.5]
 percentiles_vers = np.percentile(versicolor_petal_length, percentiles)
 print(percentiles_vers)
 
-x_vers, y_vers = ecdf(versicolor_petal_length)
-plt.plot(x_vers, y_vers, '.')
-plt.xlabel('petal length (cm)')
-plt.ylabel('ECDF')
+sns.boxplot(x='species', y='petal length (cm)', data=df)
 
-plt.plot(percentiles_vers, np.array(percentiles)/100,
-         marker='D', color='red', linestyle='none')
+plt.xlabel('species')
+plt.ylabel('petal length (cm)')
 
 plt.show()

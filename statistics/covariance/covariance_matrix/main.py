@@ -1,7 +1,6 @@
 from sklearn.datasets import load_iris
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 def ecdf(data):
@@ -29,20 +28,13 @@ print(df.columns)
 
 versicolor_petal_length = df[df['species'] ==
                              'versicolor'].loc[:, 'petal length (cm)']
-setosa_petal_length = df[df['species'] == 'setosa'].loc[:, 'petal length (cm)']
-virginica_petal_length = df[df['species'] ==
-                            'virginica'].loc[:, 'petal length (cm)']
+versicolor_petal_width = df[df['species'] ==
+                            'versicolor'].loc[:, 'petal width (cm)']
 
-percentiles = [2.5, 25, 50, 75, 97.5]
-percentiles_vers = np.percentile(versicolor_petal_length, percentiles)
-print(percentiles_vers)
+covariance_matrix = np.cov(versicolor_petal_length, versicolor_petal_width)
 
-x_vers, y_vers = ecdf(versicolor_petal_length)
-plt.plot(x_vers, y_vers, '.')
-plt.xlabel('petal length (cm)')
-plt.ylabel('ECDF')
+print(covariance_matrix)
 
-plt.plot(percentiles_vers, np.array(percentiles)/100,
-         marker='D', color='red', linestyle='none')
+petal_cov = covariance_matrix[0, 1]
 
-plt.show()
+print(petal_cov)
