@@ -19,7 +19,7 @@ def ecdf(data):
 # normal distribution with mu = 20, std = 1 and 10000 samples
 samples_std1 = np.random.normal(20, 1, size=10000)
 # increasing deviation
-samples_std2 = np.random.normal(20, 3, size=10000)
+samples_std2 = np.random.normal(20, 3, size= 10000)
 samples_std3 = np.random.normal(20, 10, size=10000)
 
 x_std1, y_std1 = ecdf(samples_std1)
